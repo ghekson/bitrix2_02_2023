@@ -8,6 +8,7 @@ use \CBitrixComponent;
 use \CIBlockElement;
 use \Exception;
 use Ylab\Helpers\HlBlockHelpers;
+use Ylab\Helpers\IBlockHelpers;
 
 /**
  * Class ElementListComponent
@@ -22,6 +23,9 @@ class ElementListComponent extends CBitrixComponent
     /** @var string $hlTemplateName Имя шаблона для отображения HL */
     private $hlTemplateName = 'hl';
 
+    /** @var string $ibCode Символьный код ИБ */
+    private $ibCode = 'positions';
+
     /**
      * Метод executeComponent
      *
@@ -32,10 +36,10 @@ class ElementListComponent extends CBitrixComponent
     {
         Loader::includeModule('iblock');
 
-        $this->idIBlock = 4;
+        $this->idIBlock = IBlockHelpers::getIBlockIdByCode($this->ibCode);
 
         if ($this->getTemplateName() == $this->hlTemplateName) {
-            $this->arResult['ITEMS'] = $this->getDataFromHl();
+            $this->arResult['ITEMS'] = $this->getDataFromHl('Orders');
         } else {
             $this->arResult['ITEMS'] = $this->getElements();
         }
@@ -76,6 +80,9 @@ class ElementListComponent extends CBitrixComponent
                 'PERCENT' => $element['PROPERTY_PERCENT_VALUE'],
                 'TOTAL' => $total,
                 'STATUS' => $element['PROPERTY_STATUS_VALUE'],
+                'WEIGHT' => $element['PROPERTY_WEIGHT_VALUE'],
+                'NUMBER_ACT' => $element['PROPERTY_NUMBER_ACT_VALUE'],
+                'ORDER' => $element['PROPERTY_ORDER_VALUE'],
             ];
         }
 
@@ -106,14 +113,13 @@ class ElementListComponent extends CBitrixComponent
      * @throws \Bitrix\Main\ObjectPropertyException
      * @throws \Bitrix\Main\SystemException
      */
-    private function getDataFromHl(): array
+    protected function getDataFromHl(string $hlName): array
     {
-        $entityClass = HlBlockHelpers::getHlEntityClass('Orders');
+        $entityClass = HlBlockHelpers::getHlEntityClass($hlName);
 
         $ordersList = $entityClass::getList([
             'select' => ['*'],
             'filter' => [],
-            'order' => ['UF_SUM'],
         ]);
 
         $orders = $ordersList->fetchAll();

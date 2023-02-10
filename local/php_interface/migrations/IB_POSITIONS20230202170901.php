@@ -207,8 +207,16 @@ class IB_POSITIONS20230202170901 extends Version
 
     }
 
+    /**
+     * @return bool|void
+     * @throws Exceptions\HelperException
+     */
     public function down()
     {
-        //your code ...
+        $helper = $this->getHelperManager();
+
+        $iblockId = $helper->Iblock()->getIblockIdIfExists('positions', 'ylab');
+
+        $helper->Iblock()->deletePropertyIfExists($iblockId, ['PRICE', 'PERCENT', 'STATUS']);
     }
 }

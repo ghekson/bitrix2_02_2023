@@ -4,3 +4,6 @@ $MESS['YLAB.ELEMENT.LIST.PRICE'] = 'Цена: ';
 $MESS['YLAB.ELEMENT.LIST.PERCENT'] = '<b>Наценка(%) : </b>';
 $MESS['YLAB.ELEMENT.LIST.TOTAL'] = 'Итого:';
 $MESS['YLAB.ELEMENT.LIST.STATUS'] = 'Статус:';
+$MESS['YLAB.ELEMENT.LIST.WEIGHT'] = 'Вес:';
+$MESS['YLAB.ELEMENT.LIST.NUMBER_ACT'] = 'Номенклатура:';
+$MESS['YLAB.ELEMENT.LIST.ORDER'] = 'Заказ:';
