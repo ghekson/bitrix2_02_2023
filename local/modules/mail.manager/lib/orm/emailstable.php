@@ -1,6 +1,11 @@
 <?php
 
-namespace Mail\Manager\Orm;
+namespace Mail\Manager; 
+
+/**
+ * На лекции вы говорите, что в namespace подключается модуль Mail\Manager
+ * orm убрал.
+ */
 
 use Bitrix\Main\Entity;
 use Bitrix\Main\Localization\Loc;
@@ -17,9 +22,16 @@ class EmailsTable extends Entity\DataManager
      */
     public static function getTableName()
     {
-        return 'y_emails';
+        return 'b_forum_email';
     }
 
+ /**
+ * таблица b_forum_email из пункта 1
+ * 
+ */
+    
+    
+    
     /**
      * Returns entity map definition.
      * @return array
@@ -33,25 +45,10 @@ class EmailsTable extends Entity\DataManager
                 'autocomplete' => true,
                 'title' => 'ID',
             ]),
-            new Entity\StringField('NAME', [
-                'validation' => [__CLASS__, 'validateName'],
-                'title' => Loc::getMessage('YLAB_MAIL_MANAGER_PROFILE_NAME_FIELD'),
-            ]),
             new Entity\StringField('EMAIL', [
+                'validation' => [__CLASS__, 'validateName'],
                 'title' => Loc::getMessage('YLAB_MAIL_MANAGER_PROFILE_EMAIL_FIELD'),
             ]),
+           
         ];
     }
-
-    /**
-     * Returns validators for NAME field.
-     * @return array
-     * @throws \Bitrix\Main\ArgumentTypeException
-     */
-    public static function validateName()
-    {
-        return [
-            new Entity\Validator\Length(null, 255),
-        ];
-    }
-}
