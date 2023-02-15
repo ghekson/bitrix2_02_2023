@@ -23,13 +23,11 @@ class Profile
         $result = [];
 
         $result['HEADER']['ID'] = Loc::getMessage('YLAB_MAIL_MANAGER_PROFILE_HEAD_ID');
-        $result['HEADER']['NAME'] = Loc::getMessage('YLAB_MAIL_MANAGER_PROFILE_HEAD_NAME');
         $result['HEADER']['EMAIL'] = Loc::getMessage('YLAB_MAIL_MANAGER_PROFILE_HEAD_EMAIL');
 
         $arParams = [
             'select' => [
-                'ID',
-                'NAME',
+                'ID',                
                 'EMAIL'
             ]
         ];
