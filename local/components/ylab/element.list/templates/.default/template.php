@@ -1,19 +1,32 @@
 <?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
-    die();
+die();
 }
 
 use Bitrix\Main\Localization\Loc;
+?>
+
+<table border="1">
+<tr>
+<?php
+foreach ($arResult['HEADER'] as $header) {
+?>
+
+<td><?= $header ?></td>
+<?php
+}
 
 ?>
-<div class="list">
-    <?php foreach ($arResult['ITEMS'] as $arItem) { ?>
-        <div>
-            <p><?= Loc::getMessage('YLAB.ELEMENT.LIST.NAME') ?> <?= $arItem['NAME'] ?></p>
-            <p><?= Loc::getMessage('YLAB.ELEMENT.LIST.PRICE') ?> <?= $arItem['PRICE'] ?></p>
-            <p><?= Loc::getMessage('YLAB.ELEMENT.LIST.PERCENT') ?> <?= $arItem['PERCENT'] ?></p>
-            <p><?= Loc::getMessage('YLAB.ELEMENT.LIST.TOTAL') ?> <?= $arItem['TOTAL'] ?></p>
-            <p><?= Loc::getMessage('YLAB.ELEMENT.LIST.STATUS') ?> <?= $arItem['STATUS'] ?></p>
-        </div>
-        <hr>
-    <?php } ?>
-</div>
+
+</tr>
+
+<?php
+foreach ($arResult['PROFILES'] as $profile ) {
+?>
+<tr>
+<td><?= $profile['ID'] ?></td>
+<td><?= $profile['EMAIL'] ?></td>
+</tr>
+<?php
+}
+?>
+</table>
