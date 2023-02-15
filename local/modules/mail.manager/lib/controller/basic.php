@@ -30,18 +30,20 @@ class Basic extends Controller
         ];
 
         return [
-            'versionAction' => [
+            'addProfileAction' => [
                 'prefilters' => $defaultFilters
             ],
         ];
     }
 
     /**
-     * Метод возвращает тестовое сообщение
+     * Добавляю по одной записи. Инициализируем в методе переменную, 
+     * которую хотим добавить.
      * @return AjaxJson
      */
-    public function versionAction($id, $name): AjaxJson
+    public function addProfileAction($add): AjaxJson
     {
-        return AjaxJson::createSuccess(['version' => '1.0.0']);
+        
+        return AjaxJson::createSuccess(['addProfile' => $add ]);
     }
 }
